@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        //ES3.1写法
+
+        function User(userName,age){
+            this.userName = userName;
+            this.age = age;
+        }
+
+        User.prototype.showName = function(){
+            alert(this.userName);
+        }
+
+        User.prototype.showAge = function(){
+            alert(this.age);
+        }
+
+        var user1 = new User("zhangshan",18);
+        alert("---------------user1----------");
+        user1.showName();
+        user1.showAge();
+
+
+        function VIPUser(userName,age,level){
+            User.call(this,userName,age);
+            this.level = level
+        }
+
+        VIPUser.prototype = new User();
+        VIPUser.prototype.constructor = VIPUser;
+        VIPUser.prototype.showLevel = function(){
+            alert(this.level);
+        }
+
+        var user2 = new VIPUser("lishi",20,99);
+        alert("---------------user2----------");
+        user2.showName();
+        user2.showAge();
+        user2.showLevel();
+
+
+    </script>
+
+    <script>
+        //ES6写法
+        class SuperUser{
+            constructor(userName,age){
+                this.userName = userName;
+                this.age = age;
+            }
+
+            showName(){
+                alert(this.userName);
+            }
+
+            showAge(){
+                alert(this.age);
+            }
+        }
+
+        let user3 = new SuperUser("wangwu",22);
+        alert("---------------user3----------");
+        user3.showName();
+        user3.showAge();
+
+
+        class AdminUser extends SuperUser
+        {
+            constructor(userName,age,level){
+                super(userName,age);
+                this.level = level;
+            }
+
+            showLevel(){
+                alert(this.level);
+            }
+        }
+
+        let user4 = new AdminUser("zhaoliu",30,98);
+        alert("---------------user4----------");
+        user4.showName();
+        user4.showAge();
+        user4.showLevel();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
